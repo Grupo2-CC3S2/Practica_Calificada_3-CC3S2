@@ -1,0 +1,158 @@
+[
+  {
+    "issue_id": 5,
+    "title": "Crear archivo bash base",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Crear archivo bash base",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 6,
+    "title": "Crear archivo Makefile con tareas básicas",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Crear archivo Makefile con tareas básicas",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 7,
+    "title": "Documentación de Sprint 1 para archivo bash base",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Documentación de Sprint 1 para archivo bash base",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 8,
+    "title": "Completar archivo bash con verificación de dependencias",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Completar archivo bash con verificación de dependencias",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 17,
+    "title": "Implementar recolección de logs a partir del servidor levantado",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Implementar recolección de logs a partir del servidor levantado",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 18,
+    "title": "Agregar procesos automáticos en el script procesos.sh",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Agregar procesos automáticos en el script procesos.sh",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 9,
+    "title": "Implementación de Makefile para los scripts bash",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Implementación de Makefile para los scripts bash",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 10,
+    "title": "Implementación básica de pruebas bats",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Implementación básica de pruebas bats",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 12,
+    "title": "Levantar servidor básico en modo escucha",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Levantar servidor básico en modo escucha",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 13,
+    "title": "Finalizar pruebas bats básicas",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Finalizar pruebas bats básicas",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 14,
+    "title": "Finalizar automatización por Makefile",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Finalizar automatización por Makefile",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 15,
+    "title": "Integración DevSecOps mediante un pipeline",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Integración DevSecOps mediante un pipeline",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 16,
+    "title": "Implementación de linters para el análisis de scripts",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Implementación de linters para el análisis de scripts",
+      "Status": "Done"
+    }
+  }
+]
