@@ -1,0 +1,106 @@
+[
+  {
+    "issue_id": 1,
+    "title": "Crear estructura base",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Crear estructura base",
+      "Status": "Done",
+      "Estimate": 1.0
+    }
+  },
+  {
+    "issue_id": 2,
+    "title": "Configurar tablero Scrum",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Configurar tablero Scrum",
+      "Status": "Done"
+    }
+  },
+  {
+    "issue_id": 3,
+    "title": "Definir backlog y estimaciones",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Definir backlog y estimaciones",
+      "Status": "Done",
+      "Estimate": 2.0
+    }
+  },
+  {
+    "issue_id": 4,
+    "title": "Implementar script extract_metrics.py",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Implementar script extract_metrics.py",
+      "Status": "Done",
+      "Estimate": 5.0
+    }
+  },
+  {
+    "issue_id": 5,
+    "title": "Crear test test_extractor.py",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Crear test test_extractor.py",
+      "Status": "Done",
+      "Estimate": 2.0
+    }
+  },
+  {
+    "issue_id": 6,
+    "title": "Actualizar Makefile",
+    "status": "CLOSED",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Actualizar Makefile",
+      "Status": "Done",
+      "Estimate": 2.0
+    }
+  },
+  {
+    "issue_id": 7,
+    "title": "Capturas de Sprint 1",
+    "status": "CLOSED",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "fields": {
+      "Title": "Capturas de Sprint 1",
+      "Status": "Done",
+      "Estimate": 1.0
+    }
+  },
+  {
+    "issue_id": 8,
+    "title": "Video Sprint 1",
+    "status": "OPEN",
+    "assignees": [
+      "Chriss5-2",
+      "YorklinPunk"
+    ],
+    "fields": {
+      "Title": "Video Sprint 1",
+      "Status": "In Progress",
+      "Estimate": 2.0
+    }
+  }
+]

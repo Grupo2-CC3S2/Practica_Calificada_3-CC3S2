@@ -12,7 +12,7 @@ from pathlib import Path
 # === CONFIGURACIÓN ===
 GITHUB_TOKEN = os.getenv("PROJECT_TOKEN")
 ORG = "Grupo2-CC3S2"             # tu organización EXACTA
-PROJECT_NUMBER = 1               # número del proyecto (ajústalo según corresponda)
+PROJECT_NUMBER = 14               # número del proyecto (ajústalo según corresponda)
 
 # === CONSULTA GRAPHQL CORRECTA ===
 query = """
