@@ -1,0 +1,26 @@
+[
+  {
+    "issue_id": 1,
+    "title": "Configurar entorno",
+    "status": "In Progress",
+    "estimate": 3,
+    "sprint": "Sprint 1",
+    "blocked_time": 0
+  },
+  {
+    "issue_id": 2,
+    "title": "Dise\u00f1ar tablero",
+    "status": "Done",
+    "estimate": 5,
+    "sprint": "Sprint 1",
+    "blocked_time": 1
+  },
+  {
+    "issue_id": 3,
+    "title": "Prueba extractor",
+    "status": "To Do",
+    "estimate": 2,
+    "sprint": "Sprint 1",
+    "blocked_time": 0
+  }
+]
