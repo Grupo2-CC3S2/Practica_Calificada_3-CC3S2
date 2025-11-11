@@ -64,7 +64,7 @@ verify:
 	fi
 	@echo "El entorno virtual ha sido creado."
 # Verifica la creación de la variable de entorno PROJECT_TOKEN
-	@if [ -z "$(PROJECT_TOKEN)" ]; then \
+	@if [ -z "$$PROJECT_TOKEN" ]; then \
 		echo "Error: PROJECT_TOKEN no ha sido definido. Por favor, defínelo antes de ejecutar este objetivo."; \
 		echo "Ejemplo: export PROJECT_TOKEN=<valor_token>"; \
 		exit 1; \
