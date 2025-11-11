@@ -30,7 +30,7 @@ run:
 
 snapshot:
 # Genera una instantánea de las métricas actuales
-	@make verify
+	@make verify PROJECT_TOKEN=$$PROJECT_TOKEN
 	@echo "Extrayendo métricas del Projecto"
 	@$(PYTHON) data/extract_metrics.py
 
