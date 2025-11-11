@@ -53,7 +53,7 @@ env:
 
 tools:
 # Instalación de dependencias en el entorno virtual
-	@$(Name_ENV)/Scripts/python -m pip install -r requirements.txt
+	@$(PYTHON) -m pip install -r requirements.txt
 	@echo "Dependencias instaladas en el entorno virtual."
 
 verify:
