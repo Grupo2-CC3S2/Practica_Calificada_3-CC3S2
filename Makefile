@@ -3,6 +3,14 @@ Name_ENV?=env
 
 .DEFAULT_GOAL := help
 
+# Ruta de Python dentro del venv
+ifeq ($(OS),Windows_NT)
+    PYTHON := $(Name_ENV)/Scripts/python
+else
+    PYTHON := $(Name_ENV)/bin/python
+endif
+
+
 .PHONY: run snapshot test env clean help tools verify clean-env display
 
 help:
@@ -18,22 +26,22 @@ help:
 
 run:
 	@echo "Extrayendo métricas del Proyecto"
-	@$(Name_ENV)/Scripts/python data/extract_metrics.py
+	@$(PYTHON) data/extract_metrics.py
 
 snapshot:
 # Genera una instantánea de las métricas actuales
 	@make verify
 	@echo "Extrayendo métricas del Projecto"
-	@$(Name_ENV)/Scripts/python data/extract_metrics.py
+	@$(PYTHON) data/extract_metrics.py
 
 display:
 # Despliega el dashboard de métricas
 	@echo "Iniciando el dashboard de métricas"
-	@$(Name_ENV)/Scripts/python -m streamlit run dashboard/app_streamlit.py
+	@$(PYTHON) -m streamlit run dashboard/app_streamlit.py
 
 test:
 # Ejecuta las pruebas unitarias con pytest
-	@$(Name_ENV)/Scripts/python -m pytest -vv --tb=short
+	@$(PYTHON) -m pytest -vv --tb=short
 
 env:
 # Creación del entorno virtual e instalación de dependencias
