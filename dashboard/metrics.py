@@ -21,7 +21,7 @@ def velocity(df):
 
 def cycle_time(df):
     # aquí podrías calcular algo más realista si tienes fechas
-    return df["blocked_time"].mean() if "blocked_time" in df else None
+    return df["blocked_time_(hrs)"].mean() if "blocked_time_(hrs)" in df else None
 
 def slip_rate(df):
     done = df[df["status"] == "Done"]
