@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
-"""
-extract_metrics.py (Sprint 2 - para Project en ORGANIZATION)
-Extrae issues reales del Project Kanban (ProjectV2) de una organización en GitHub.
-"""
 import os
 import requests
 import datetime
 import json
 from pathlib import Path
 
-# === CONFIGURACIÓN ===
 GITHUB_TOKEN = os.getenv("PROJECT_TOKEN")
-ORG = "Grupo2-CC3S2"             # tu organización EXACTA
-PROJECT_NUMBER = 14               # número del proyecto (ajústalo según corresponda)
+ORG = "Grupo2-CC3S2"
+PROJECT_NUMBER = 14
 
-# === CONSULTA GRAPHQL CORRECTA ===
+GRAPHQL_URL = "https://api.github.com/graphql"
+
+# === CONSULTA GraphQL ===
 query = """
 query($org: String!, $number: Int!) {
   organization(login: $org) {
@@ -34,10 +31,6 @@ query($org: String!, $number: Int!) {
           fieldValues(first: 10) {
             nodes {
               __typename
-              ... on ProjectV2ItemFieldTextValue {
-                field { ... on ProjectV2FieldCommon { name } }
-                text
-              }
               ... on ProjectV2ItemFieldNumberValue {
                 field { ... on ProjectV2FieldCommon { name } }
                 number
@@ -45,6 +38,10 @@ query($org: String!, $number: Int!) {
               ... on ProjectV2ItemFieldSingleSelectValue {
                 field { ... on ProjectV2FieldCommon { name } }
                 name
+              }
+              ... on ProjectV2ItemFieldTextValue {
+                field { ... on ProjectV2FieldCommon { name } }
+                text
               }
             }
           }
@@ -57,20 +54,15 @@ query($org: String!, $number: Int!) {
 
 def fetch_data():
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
-    url = "https://api.github.com/graphql"
     variables = {"org": ORG, "number": PROJECT_NUMBER}
-
-    response = requests.post(url, json={"query": query, "variables": variables}, headers=headers)
-    data = response.json()
-    print("Código:", response.status_code)
-    print(json.dumps(data, indent=2))
-
+    r = requests.post(GRAPHQL_URL, json={"query": query, "variables": variables}, headers=headers)
+    data = r.json()
     if "errors" in data:
-        raise Exception(data["errors"][0]["message"])
+        raise Exception(data["errors"])
 
     items = data["data"]["organization"]["projectV2"]["items"]["nodes"]
-
     issues = []
+
     for it in items:
         if not it["content"]:
             continue
@@ -78,33 +70,32 @@ def fetch_data():
             "issue_id": it["content"]["number"],
             "title": it["content"]["title"],
             "status": it["content"]["state"],
-            "assignees": [a["login"] for a in it["content"]["assignees"]["nodes"]],
-            "fields": {}
-        }
+            "assignees": [a["login"] for a in it["content"]["assignees"]["nodes"]]        }
+
         for f in it["fieldValues"]["nodes"]:
             field_type = f["__typename"]
-            if "field" not in f or not f["field"]:
-                continue
-            field_name = f["field"]["name"]
+            field_name = f["field"]["name"].lower().replace(" ", "_") if f.get("field") else "unknown"
+
             if field_type == "ProjectV2ItemFieldNumberValue":
-                issue["fields"][field_name] = f.get("number")
+                issue[field_name] = f.get("number")
             elif field_type == "ProjectV2ItemFieldSingleSelectValue":
-                issue["fields"][field_name] = f.get("name")
+                issue[field_name] = f.get("name")  # aquí vendrá "Sprint 1", "Sprint 2", etc.
             elif field_type == "ProjectV2ItemFieldTextValue":
-                issue["fields"][field_name] = f.get("text")
+                issue[field_name] = f.get("text")
+
+        # Si no hay campo Sprint asignado, lo ponemos explícitamente
+        if "sprint" not in issue:
+            issue["sprint"] = "Sin asignar"
+
         issues.append(issue)
-
     return issues
-
 
 def main():
     Path("data/snapshots").mkdir(parents=True, exist_ok=True)
     snapshot_file = f"data/snapshots/snapshot-{datetime.date.today()}.json"
-
     items = fetch_data()
     with open(snapshot_file, "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2, ensure_ascii=False)
-
     print(f"Snapshot generado: {snapshot_file} ({len(items)} issues)")
 
 if __name__ == "__main__":
