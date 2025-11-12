@@ -5,7 +5,6 @@ import json
 def sample_data(tmp_path):
     """
     Fixture que crea un dataset temporal simulado.
-    Se puede reutilizar en cualquier test dentro del directorio tests/.
     """
     test_file = tmp_path / "test_cards.json"
     test_content = [

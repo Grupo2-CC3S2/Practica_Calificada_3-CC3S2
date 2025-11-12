@@ -4,75 +4,85 @@ import pandas as pd
 from pathlib import Path
 
 SNAPSHOT_DIR = Path("data/snapshots")
-OUTPUT_FILE = Path("data/forecast-latest.json")
+OUTPUT_FILE = Path("data/forecast/forecast-latest.json")
 
-def load_snapshots():
-    rows = []
-    for file in sorted(SNAPSHOT_DIR.glob("snapshot-*.json")):
-        try:
-            date = datetime.date.fromisoformat(file.stem.replace("snapshot-", ""))
-        except ValueError:
-            continue
-        with open(file, encoding="utf-8") as f:
-            data = json.load(f)
-            for issue in data:
-                rows.append({
-                    "date": date,
-                    "status": issue.get("status", ""),
-                    "estimate": float(issue.get("estimate", 0) or 0)
-                })
-    return pd.DataFrame(rows)
+def load_snapshot(file):
+    """Carga un snapshot individual y devuelve un DataFrame + fecha."""
+    try:
+        date = datetime.date.fromisoformat(file.stem.replace("snapshot-", ""))
+    except ValueError:
+        return None, None
+
+    with open(file, encoding="utf-8") as f:
+        data = json.load(f)
+
+    df = pd.DataFrame(data)
+    df["date"] = date
+    return date, df
+
 
 def calculate_velocity(df):
+    """Velocidad = suma de estimaciones completadas (status Done)."""
     done = df[df["status"].str.lower() == "done"]
-    if done.empty:
-        return 0
-    daily = done.groupby("date")["estimate"].sum().reset_index()
-    return daily["estimate"].mean()
+    return done["estimate"].sum() if not done.empty else 0
 
-def generate_forecast(df):
+
+def generate_forecast(df, date):
+    """Genera predicción por snapshot (día)."""
     velocity = calculate_velocity(df)
     total = df["estimate"].sum()
     done = df[df["status"].str.lower() == "done"]["estimate"].sum()
     remaining = total - done
+
     if velocity <= 0:
         forecast_date = "Indeterminado"
         days_needed = 0
     else:
         days_needed = remaining / velocity
-        forecast_date = str(datetime.date.today() + datetime.timedelta(days=round(days_needed)))
+        forecast_date = str(date + datetime.timedelta(days=round(days_needed)))
 
-    # alertas
     alerts = []
     if velocity < 2:
-        alerts.append("Velocidad baja (<2 pts/día)")
+        alerts.append("Velocidad baja (<2 pts)")
     if remaining > 2 * velocity:
-        alerts.append("🚨 Posible sobrecarga de sprint")
+        alerts.append("🚨 Posible sobrecarga del sprint")
     if not alerts:
         alerts.append("Sin alertas")
 
     return {
-        "today": str(datetime.date.today()),
-        "total_points": round(total, 2),
-        "done_points": round(done, 2),
-        "remaining_points": round(remaining, 2),
-        "velocity": round(velocity, 2),
-        "days_needed": round(days_needed, 1),
+        "snapshot_date": str(date),
+        "total_points": float(round(total, 2)),
+        "done_points": float(round(done, 2)),
+        "remaining_points": float(round(remaining, 2)),
+        "velocity": float(round(velocity, 2)),
+        "days_needed": float(round(days_needed, 1)),
         "forecast_date": forecast_date,
         "alerts": alerts
     }
 
+
+
 def main():
-    df = load_snapshots()
-    if df.empty:
-        print("No hay snapshots disponibles.")
+    forecasts = []
+    for file in sorted(SNAPSHOT_DIR.glob("snapshot-*.json")):
+        date, df = load_snapshot(file)
+        if df is None or df.empty:
+            continue
+        forecast = generate_forecast(df, date)
+        forecasts.append(forecast)
+        print(f"\n===========Forecast para {date}:===========")
+        print(json.dumps(forecast, indent=2, ensure_ascii=False))
+
+    if not forecasts:
+        print("===========No hay snapshots válidos para procesar===========")
         return
-    forecast = generate_forecast(df)
+
     OUTPUT_FILE.parent.mkdir(exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(forecast, f, indent=2, ensure_ascii=False)
-    print("Forecast final generado:")
-    print(json.dumps(forecast, indent=2, ensure_ascii=False))
+        json.dump(forecasts, f, indent=2, ensure_ascii=False)
+
+    print(f"\n===========Archivo generado: {OUTPUT_FILE}")
+
 
 if __name__ == "__main__":
     main()
