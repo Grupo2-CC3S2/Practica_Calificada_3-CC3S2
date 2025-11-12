@@ -1,0 +1,38 @@
+[
+  {
+    "snapshot_date": "2025-11-09",
+    "total_points": 10.0,
+    "done_points": 5.0,
+    "remaining_points": 5.0,
+    "velocity": 5.0,
+    "days_needed": 1.0,
+    "forecast_date": "2025-11-10",
+    "alerts": [
+      "Sin alertas"
+    ]
+  },
+  {
+    "snapshot_date": "2025-11-11",
+    "total_points": 37.0,
+    "done_points": 22.0,
+    "remaining_points": 15.0,
+    "velocity": 22.0,
+    "days_needed": 0.7,
+    "forecast_date": "2025-11-12",
+    "alerts": [
+      "Sin alertas"
+    ]
+  },
+  {
+    "snapshot_date": "2025-11-12",
+    "total_points": 48.0,
+    "done_points": 48.0,
+    "remaining_points": 0.0,
+    "velocity": 48.0,
+    "days_needed": 0.0,
+    "forecast_date": "2025-11-12",
+    "alerts": [
+      "Sin alertas"
+    ]
+  }
+]

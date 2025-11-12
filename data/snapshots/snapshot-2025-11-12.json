@@ -1,0 +1,226 @@
+[
+  {
+    "issue_id": 8,
+    "title": "Video Sprint 1",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2",
+      "YorklinPunk"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 10.0
+  },
+  {
+    "issue_id": 1,
+    "title": "Crear estructura base",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 1.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 0.0
+  },
+  {
+    "issue_id": 2,
+    "title": "Configurar tablero Scrum",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "sprint": "Sprint 1",
+    "estimate": 2.0,
+    "blocked_time_(hrs)": 1.0
+  },
+  {
+    "issue_id": 3,
+    "title": "Definir backlog y estimaciones",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 2.0
+  },
+  {
+    "issue_id": 4,
+    "title": "Implementar script extract_metrics.py",
+    "status": "Done",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "estimate": 5.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 4.0
+  },
+  {
+    "issue_id": 5,
+    "title": "Crear test test_extractor.py",
+    "status": "Done",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 5.0
+  },
+  {
+    "issue_id": 6,
+    "title": "Actualizar Makefile",
+    "status": "Done",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 6.0
+  },
+  {
+    "issue_id": 7,
+    "title": "Capturas de Sprint 1",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 1.0,
+    "sprint": "Sprint 1",
+    "blocked_time_(hrs)": 8.0
+  },
+  {
+    "issue_id": 12,
+    "title": "Conectar extract_metrics.py con GitHub Projects API",
+    "status": "Done",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "estimate": 5.0,
+    "sprint": "Sprint 2",
+    "blocked_time_(hrs)": 0.0
+  },
+  {
+    "issue_id": 13,
+    "title": "Validar autenticación y generación de snapshot real",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 1.0,
+    "sprint": "Sprint 2",
+    "blocked_time_(hrs)": 3.0
+  },
+  {
+    "issue_id": 14,
+    "title": "Crear pipeline para implementación CI/CD",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "blocked_time_(hrs)": 10.0,
+    "estimate": 5.0,
+    "sprint": "Sprint 2"
+  },
+  {
+    "issue_id": 15,
+    "title": "Agregar secreto seguro PROJECT_TOKEN al repo",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2",
+      "YorklinPunk"
+    ],
+    "estimate": 1.0,
+    "sprint": "Sprint 2",
+    "blocked_time_(hrs)": 0.0
+  },
+  {
+    "issue_id": 16,
+    "title": "Guardar evidencias de ejecución del Sprint 2",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 1.0,
+    "sprint": "Sprint 2",
+    "blocked_time_(hrs)": 10.0
+  },
+  {
+    "issue_id": 17,
+    "title": "Video Sprint 2",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2",
+      "YorklinPunk"
+    ],
+    "blocked_time_(hrs)": 9.0,
+    "estimate": 4.0,
+    "sprint": "Sprint 2"
+  },
+  {
+    "issue_id": 18,
+    "title": "Actualizar Makefile para el Sprint 2",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 3.0,
+    "sprint": "Sprint 2",
+    "blocked_time_(hrs)": 8.0
+  },
+  {
+    "issue_id": 21,
+    "title": "Implementar módulo forecast.py",
+    "status": "Done",
+    "assignees": [
+      "YorklinPunk"
+    ],
+    "estimate": 5.0,
+    "sprint": "Sprint 3",
+    "blocked_time_(hrs)": 0.0
+  },
+  {
+    "issue_id": 22,
+    "title": "Ampliar pipeline daily-snapshot.yml para incluir forecast",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 3",
+    "blocked_time_(hrs)": 6.0
+  },
+  {
+    "issue_id": 23,
+    "title": "Crear test para forecast.py",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "estimate": 2.0,
+    "sprint": "Sprint 3",
+    "blocked_time_(hrs)": 3.0
+  },
+  {
+    "issue_id": 24,
+    "title": "Capturas de Sprint 3",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2"
+    ],
+    "sprint": "Sprint 3",
+    "blocked_time_(hrs)": 5.0,
+    "estimate": 1.0
+  },
+  {
+    "issue_id": 25,
+    "title": "Video Sprint 3",
+    "status": "Done",
+    "assignees": [
+      "Chriss5-2",
+      "YorklinPunk"
+    ],
+    "blocked_time_(hrs)": 5.0,
+    "sprint": "Sprint 3",
+    "estimate": 1.0
+  }
+]
