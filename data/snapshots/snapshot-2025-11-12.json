@@ -181,7 +181,7 @@
   {
     "issue_id": 22,
     "title": "Ampliar pipeline daily-snapshot.yml para incluir forecast",
-    "status": "In Progress",
+    "status": "Done",
     "assignees": [
       "Chriss5-2"
     ],
@@ -203,7 +203,7 @@
   {
     "issue_id": 24,
     "title": "Capturas de Sprint 3",
-    "status": "In Progress",
+    "status": "Done",
     "assignees": [
       "Chriss5-2"
     ],
