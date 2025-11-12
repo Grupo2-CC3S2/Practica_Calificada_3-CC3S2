@@ -106,6 +106,8 @@ zip:
 	@echo "Proyecto comprimido en proyecto_$${DATE}_$${HASH}.zip"
 	@echo "Eliminando carpetas empaquetadas..."
 	@rm -rf dashboard/ data/ test/
+	@echo "Eliminando entorno virtual"
+	@make clean-env
 
 unzip:
 # Descomprime el archivo zip más reciente en la carpeta raiz
