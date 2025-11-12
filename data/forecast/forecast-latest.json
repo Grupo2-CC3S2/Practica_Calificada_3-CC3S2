@@ -26,10 +26,10 @@
   {
     "snapshot_date": "2025-11-12",
     "total_points": 48.0,
-    "done_points": 45.0,
-    "remaining_points": 3.0,
-    "velocity": 45.0,
-    "days_needed": 0.1,
+    "done_points": 48.0,
+    "remaining_points": 0.0,
+    "velocity": 48.0,
+    "days_needed": 0.0,
     "forecast_date": "2025-11-12",
     "alerts": [
       "Sin alertas"
