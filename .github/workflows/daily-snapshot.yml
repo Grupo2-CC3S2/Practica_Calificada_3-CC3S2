@@ -38,6 +38,7 @@ jobs:
         PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
       run: |
         make run
+
     - name: Run tests
       run: |
         make test
