@@ -18,7 +18,8 @@ help:
 	@echo "Objetivos disponibles:"
 	@echo "  make run         - Despliega todo el proyecto"
 	@echo "  make snapshot    - Genera una instantánea de las métricas actuales"
-	@echo "  make display     - Despliega el dashboard de métricas"
+	@echo "  make display     - Despliega el dashboard de métricas con streamlit"
+	@echo "  make fastapi     - Despliega el dashboard simple de métricas con fastapi"
 	@echo "  make test        - Ejecuta las pruebas unitarias"
 	@echo "  make env         - Crea el entorno virtual e instala dependencias"
 	@echo "  make clean-env   - Elimina el entorno virtual"
@@ -26,7 +27,17 @@ help:
 
 run:
 	@echo "Extrayendo métricas del Proyecto"
-	@$(PYTHON) data/extract_metrics.py
+	@make snapshot
+	@make forecast
+	@echo "Ejecución completa del sistema"
+	@echo "Levantando dashboard con fastapi"
+	@make fastapi & pid=$$!; sleep 15; kill $$pid
+	@echo "Servidor FastAPI cerrado correctamente."
+	@echo "Levantando dashboard simple con Streamlit..."
+	@make display & pid=$$!; sleep 15; kill $$pid
+	@echo "Ejecución correcta de todo el proyecto"
+	@echo "Ejecutando pruebas unitarias"
+	@make test
 
 snapshot:
 # Genera una instantánea de las métricas actuales
@@ -38,6 +49,16 @@ display:
 # Despliega el dashboard de métricas
 	@echo "Iniciando el dashboard de métricas"
 	@$(PYTHON) -m streamlit run dashboard/app_streamlit.py
+
+fastapi:
+# Despliega el dashboard con fastapi
+	@echo "Iniciando respuesta JSON con fastapi"
+	@$(PYTHON) -m uvicorn dashboard.app_fastapi:app --reload
+
+forecast:
+# Genera un forecast de los snapshot según su fecha
+	@echo "Generando forecast"
+	@$(PYTHON) dashboard/forecast.py
 
 test:
 # Ejecuta las pruebas unitarias con pytest
