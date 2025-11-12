@@ -9,7 +9,10 @@ OUTPUT_FILE = Path("data/forecast-latest.json")
 def load_snapshots():
     rows = []
     for file in sorted(SNAPSHOT_DIR.glob("snapshot-*.json")):
-        date = datetime.date.fromisoformat(file.stem.replace("snapshot-", ""))
+        try:
+            date = datetime.date.fromisoformat(file.stem.replace("snapshot-", ""))
+        except ValueError:
+            continue
         with open(file, encoding="utf-8") as f:
             data = json.load(f)
             for issue in data:
@@ -27,34 +30,49 @@ def calculate_velocity(df):
     daily = done.groupby("date")["estimate"].sum().reset_index()
     return daily["estimate"].mean()
 
-def estimate_completion(df, velocity):
+def generate_forecast(df):
+    velocity = calculate_velocity(df)
     total = df["estimate"].sum()
     done = df[df["status"].str.lower() == "done"]["estimate"].sum()
     remaining = total - done
     if velocity <= 0:
-        return None
-    days_needed = remaining / velocity
-    forecast_date = datetime.date.today() + datetime.timedelta(days=round(days_needed))
+        forecast_date = "Indeterminado"
+        days_needed = 0
+    else:
+        days_needed = remaining / velocity
+        forecast_date = str(datetime.date.today() + datetime.timedelta(days=round(days_needed)))
+
+    # alertas
+    alerts = []
+    if velocity < 2:
+        alerts.append("Velocidad baja (<2 pts/día)")
+    if remaining > 2 * velocity:
+        alerts.append("🚨 Posible sobrecarga de sprint")
+    if not alerts:
+        alerts.append("Sin alertas")
+
     return {
         "today": str(datetime.date.today()),
-        "total_points": total,
-        "done_points": done,
-        "remaining_points": remaining,
+        "total_points": round(total, 2),
+        "done_points": round(done, 2),
+        "remaining_points": round(remaining, 2),
         "velocity": round(velocity, 2),
         "days_needed": round(days_needed, 1),
-        "forecast_date": str(forecast_date)
+        "forecast_date": forecast_date,
+        "alerts": alerts
     }
 
 def main():
     df = load_snapshots()
-    velocity = calculate_velocity(df)
-    result = estimate_completion(df, velocity)
-    if result:
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(result, f, indent=2)
-        print("Forecast generado:", result)
-    else:
-        print("No se pudo calcular el forecast (velocity=0)")
+    if df.empty:
+        print("No hay snapshots disponibles.")
+        return
+    forecast = generate_forecast(df)
+    OUTPUT_FILE.parent.mkdir(exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(forecast, f, indent=2, ensure_ascii=False)
+    print("Forecast final generado:")
+    print(json.dumps(forecast, indent=2, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()
