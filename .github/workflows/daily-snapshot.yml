@@ -23,9 +23,13 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Create virtual environment and install dependencies
+    - name: Package the project
       run: |
-        make env
+        make zip
+    
+    - name: Deploy the environment
+      run: |
+        make build
     
     - name: Create metrics snapshot
       env:
