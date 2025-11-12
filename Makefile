@@ -11,7 +11,7 @@ else
 endif
 
 
-.PHONY: run snapshot test env clean help tools verify clean-env display
+.PHONY: build run snapshot test env clean help tools verify clean-env display zip unzip 
 
 help:
 # Muestra los objetivos disponibles en el Makefile
@@ -24,6 +24,13 @@ help:
 	@echo "  make env         - Crea el entorno virtual e instala dependencias"
 	@echo "  make clean-env   - Elimina el entorno virtual"
 	@echo "  make clean       - Limpia archivos temporales y cachés"
+
+build:
+# Construye el proyecto (entorno virtual y dependencias)
+	@make env
+	@echo "Proyecto construido correctamente."
+	@echo "Desempaquetando el proyecto..."
+	@make unzip
 
 run:
 	@echo "Extrayendo métricas del Proyecto"
@@ -91,6 +98,19 @@ verify:
 		exit 1; \
 	fi
 	@echo "PROJECT_TOKEN está definido."
+
+zip:
+# Comprime el proyecto en un archivo zip con nombre según la fecha en formato YYYY-MM-DD y elimina las carpetas empaquetadas
+# El nombre es la fecha en YYYY-MM-DD y un hash 256 bits generado a partir de la fecha actual ejemplo: zip_2024-06-15_abcd1234....zip
+	@DATE=$$(date +%F); HASH=$$(echo -n $${DATE} | sha256sum | cut -d' ' -f1); zip -r dist/zip_$${DATE}_$${HASH}.zip dashboard/ data/ test/ -x "*__pycache__*" -x "*.pytest_cache*"
+	@echo "Proyecto comprimido en proyecto_$${DATE}_$${HASH}.zip"
+	@echo "Eliminando carpetas empaquetadas..."
+	@rm -rf dashboard/ data/ test/
+
+unzip:
+# Descomprime el archivo zip más reciente en la carpeta raiz
+	@LATEST_ZIP=$$(ls -t dist/zip_*.zip | head -1); unzip -o $$LATEST_ZIP
+	@echo "Archivo $$LATEST_ZIP descomprimido en la carpeta raiz."
 
 clean-env:
 # Elimina el entorno virtual
